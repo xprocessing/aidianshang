@@ -29,16 +29,30 @@
 
 <body>
     <div class="container">
-        <h3>新品开发进度：</h3>
+        <h3>数据更新：</h3>
     </div>
+   
     <div class="container">
-        <h1>cz工具站：</h1>
-        <h3>常用的入口：</h3>
+        <h3><a href="admin-panel/dashboard.php" target="_blank">数据管理admin</a></h3>
         <ul>
+            <li>数据大盘：<a href="admin-panel/dashboard.php" target="_blank">数据罗盘</a></li>
+            <li>广告费导入：<a href="admin-panel/shop_costs.php" target="_blank">导入广告费</a></li>
+            <li>采购：<a href="xlingxing/php/get_purchaseOrderList2db.php?nDaysAgo=200" target="_blank">采购待到货量更新到仓库</a>
+            </li>
 
+
+            <li>订单更新：<a href="xlingxing/php/get_orders_profit2db.php?nDaysAgo=1" target="_blank">1.更新昨日订单数据 </a>---》
+                <a href="xlingxing/php/get_orders_amazon2db.php?n_days=3&offset=0" target="_blank">2.更新昨日FBA订单数 </a>---》
+                <a href="xlingxing/php/get_orders_profit2$.php" target="_blank">3.日元英镑加元转美元</a>
+            </li>
+            </li>
+            <li>产品同步：<a href="xlingxing/php/get_products2db.php?length=500&offset=1" target="_blank">同步产品到数据库</a></li>
+
+            <li>钉钉提醒：<a href="admin-panel/dingding/ding_profit.php" target="_blank">亏损订单提醒</a>，<a
+                    href="admin-panel/dingding/ding_inventory.php" target="_blank">库龄提醒</a></li>
             <li>订单利润：<a href="admin-panel/order_profit.php" target="_blank">订单利润明细</a>&nbsp;&nbsp;
                 <a href="admin-panel/order_profit.php?action=stats" target="_blank">利润多维度统计</a>
-               
+
             <li>
                 库存预警：<a href="admin-panel/inventory_details.php?action=inventory_alert" target="_blank">库存预警</a>
                 ---》<a href="admin-panel/inventory_details.php?action=overaged_stats" target="_blank">库龄统计</a>
@@ -64,36 +78,10 @@
                     target="_blank">类目页面</a>产品页面，推荐列表
 
             </li>
-            <li>车型数据库：<a href="admin-panel/car_data.php" target="_blank">车型数据库</a></li>            
-            <li >数据大盘：<a href="admin-panel/dashboard.php" target="_blank">数据罗盘</a></li>
-            <li>选品系统：(开发中) </li>            
-            <li>AI生成：<a href="https://aigc.younger-car.com/" target="_blank">AI生成(测试)</a></li>            
-            <li>财务报表：(开发中)</li>            
-            <li dev="java springboot">客服：多平台消息整合（开发中）</li>
-            <li>产品发布：查看多店发布</li>
-            
+            <li>车型数据库：<a href="admin-panel/car_data.php" target="_blank">车型数据库</a></li>
+            <li>数据大盘：<a href="admin-panel/dashboard.php" target="_blank">数据罗盘</a></li>
 
 
-        </ul>
-
-    </div>
-
-    <div class="container">
-        <h3><a href="admin-panel/dashboard.php" target="_blank">数据管理admin</a></h3>
-        <ul>
-              <li >数据大盘：<a href="admin-panel/dashboard.php" target="_blank">数据罗盘</a></li>
-            <li>广告费导入：<a href="admin-panel/shop_costs.php" target="_blank">导入广告费</a></li>
-            <li>采购：<a href="xlingxing/php/get_purchaseOrderList2db.php?nDaysAgo=200" target="_blank">采购待到货量更新到仓库</a></li>
-
-
-            <li>订单更新：<a href="xlingxing/php/get_orders_profit2db.php?nDaysAgo=1" target="_blank">1.更新昨日订单数据 </a>---》
-                <a href="xlingxing/php/get_orders_amazon2db.php?n_days=3&offset=0" target="_blank">2.更新昨日FBA订单数 </a>---》
-                <a href="xlingxing/php/get_orders_profit2$.php" target="_blank">3.日元英镑加元转美元</a>
-            </li>
-            </li>
-            <li>产品同步：<a href="xlingxing/php/get_products2db.php?length=500&offset=1" target="_blank">同步产品到数据库</a></li>
-
-            <li>钉钉提醒：<a href="admin-panel/dingding/ding_profit.php" target="_blank">亏损订单提醒</a>，<a href="admin-panel/dingding/ding_inventory.php" target="_blank">库龄提醒</a></li>
 
         </ul>
     </div>
