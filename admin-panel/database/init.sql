@@ -1,7 +1,4 @@
 -- 创建数据库
-CREATE DATABASE IF NOT EXISTS cz_data CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE cz_data;
-
 -- 用户表
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -192,25 +189,25 @@ INSERT INTO role_permissions (role_id, permission_id) VALUES
 INSERT INTO users (username, email, password, full_name) VALUES
 ('admin', 'admin@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '系统管理员');
 
--- 示例数据表：产品表
-CREATE TABLE IF NOT EXISTS products (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    description TEXT,
-    price DECIMAL(10, 2) NOT NULL,
-    category VARCHAR(50) NOT NULL,
-    status ENUM('active', 'inactive') DEFAULT 'active',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
+-- 示例数据表：产品表（已注释，实际产品表定义见下方）
+-- CREATE TABLE IF NOT EXISTS products (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     name VARCHAR(100) NOT NULL,
+--     description TEXT,
+--     price DECIMAL(10, 2) NOT NULL,
+--     category VARCHAR(50) NOT NULL,
+--     status ENUM('active', 'inactive') DEFAULT 'active',
+--     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+-- );
 
--- 插入示例产品数据
-INSERT INTO products (name, description, price, category) VALUES
-('产品1', '这是产品1的描述', 100.00, '电子产品'),
-('产品2', '这是产品2的描述', 200.00, '家居用品'),
-('产品3', '这是产品3的描述', 300.00, '服装'),
-('产品4', '这是产品4的描述', 400.00, '电子产品'),
-('产品5', '这是产品5的描述', 500.00, '家居用品');
+-- 插入示例产品数据（已注释，因为表结构已变更）
+-- INSERT INTO products (name, description, price, category) VALUES
+-- ('产品1', '这是产品1的描述', 100.00, '电子产品'),
+-- ('产品2', '这是产品2的描述', 200.00, '家居用品'),
+-- ('产品3', '这是产品3的描述', 300.00, '服装'),
+-- ('产品4', '这是产品4的描述', 400.00, '电子产品'),
+-- ('产品5', '这是产品5的描述', 500.00, '家居用品');
 
 -- 给管理员分配角色
 INSERT INTO user_roles (user_id, role_id) VALUES
@@ -232,8 +229,7 @@ CREATE TABLE IF NOT EXISTS `new_products` (
 	`require_no` CHAR(50) NOT NULL COMMENT '需求编号',
 	`img_url` VARCHAR(255),
 	`require_title` VARCHAR(255) COMMENT '需求名称',
-	`npdId` CHAR(50) COMMENT '新产品id
-',
+	`npdId` CHAR(50) COMMENT '新产品id',
 	`sku` CHAR(50),
 	`remark` VARCHAR(255) COMMENT '备注',
 	`create_time` DATE,
@@ -242,7 +238,7 @@ CREATE TABLE IF NOT EXISTS `new_products` (
 	PRIMARY KEY(`id`)
 );
 
----订单利润表
+-- 订单利润表
 CREATE TABLE IF NOT EXISTS `order_profit` (
 	`id` INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
 	`store_id` CHAR(50) COMMENT '店铺id',
@@ -325,8 +321,6 @@ CREATE TABLE IF NOT EXISTS products (
     custom_fields JSON NULL COMMENT '自定义字段（JSON格式）',  -- JSON类型，允许为空
     global_tags JSON NULL COMMENT '产品标签（JSON格式）'  -- JSON类型，允许为空
 );
-
-USE cz_data;
 
 -- 创建仓库信息表（包含所有JSON数据中出现的字段）
 CREATE TABLE IF NOT EXISTS warehouses (
@@ -491,7 +485,7 @@ INSERT INTO `inventory_details` (
 '[{"name":"0-15天库龄","qty":0},{"name":"16-30天库龄","qty":0},{"name":"31-90天库龄","qty":2},{"name":"91天以上库龄","qty":0}]',
 2.0,230.0000,0.0000,0.0000,230.0000);
 
----fba仓库明细，仓库name+sku唯一索引。
+-- fba仓库明细，仓库name+sku唯一索引。
 CREATE TABLE `inventory_details_fba` ( 
   `name` VARCHAR(100) NOT NULL COMMENT '仓库名',
   `seller_group_name` VARCHAR(100) NOT NULL COMMENT '共享仓店铺名',
@@ -598,8 +592,8 @@ CREATE TABLE IF NOT EXISTS car_data (
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='车型数据';
 
--- 为已有的car_data表添加make+year+trim组合唯一约束
-ALTER TABLE `cz_data`.`car_data` DROP INDEX `uk_make_year_trim`, ADD UNIQUE `uk_make_year_trim` (`make`, `model`, `year`, `trim`) USING BTREE COMMENT '品牌、年份、配置版本联合唯一';
+-- 为已有的car_data表添加make+model+year+trim组合唯一约束
+ALTER TABLE car_data ADD UNIQUE `uk_make_year_trim` (`make`, `model`, `year`, `trim`) USING BTREE COMMENT '品牌、年份、配置版本联合唯一';
 
 
 
@@ -808,9 +802,4 @@ CREATE TABLE IF NOT EXISTS `order_review` (
     `create_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
 	PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='订单审核';
-
-
-
-# 
-
 

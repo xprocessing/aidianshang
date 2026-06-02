@@ -28,9 +28,9 @@ define('PUBLIC_URL', ADMIN_PANEL_URL . '/public');
 // 3. 数据库配置
 // ============================================
 define('DB_HOST', 'localhost');
-define('DB_USER', 'your_db_username');
-define('DB_PASS', 'your_db_password');
-define('DB_NAME', 'your_database_name');
+define('DB_USER', 'aidianshang');
+define('DB_PASS', 'BhE4MAHBWwWjRdAW');
+define('DB_NAME', 'aidianshang');
 
 // ============================================
 // 4. Redis 缓存配置
