@@ -220,7 +220,7 @@ CREATE TABLE IF NOT EXISTS yunfei (
     shisuanyunfei JSON DEFAULT NULL,
     create_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     UNIQUE KEY unique_order_no (global_order_no)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 -- 新品开发及进度表
@@ -236,7 +236,7 @@ CREATE TABLE IF NOT EXISTS `new_products` (
 	`current_step` INTEGER COMMENT '当前进度',
 	`process_list` JSON COMMENT '进度明细',
 	PRIMARY KEY(`id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 订单利润表
 CREATE TABLE IF NOT EXISTS `order_profit` (
@@ -265,7 +265,7 @@ CREATE TABLE IF NOT EXISTS `order_profit` (
 	`profit_rate` CHAR(20) COMMENT '利润率（已经计算过，数据库中有正有负,保留小数点两位）',	
 	`update_time` DATETIME COMMENT '数据更新时间',
 	PRIMARY KEY(`id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 -- 创建店铺信息表
@@ -284,7 +284,7 @@ CREATE TABLE `store` (
   `track_manager_name` VARCHAR(50) NULL COMMENT '赛道负责人姓名',
   `track_name` VARCHAR(50)  NULL COMMENT '赛道名称',
   PRIMARY KEY (`store_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='店铺信息表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='店铺信息表';
 
 
 
@@ -320,7 +320,7 @@ CREATE TABLE IF NOT EXISTS products (
     aux_relation_list JSON NULL,  -- JSON类型，允许为空
     custom_fields JSON NULL COMMENT '自定义字段（JSON格式）',  -- JSON类型，允许为空
     global_tags JSON NULL COMMENT '产品标签（JSON格式）'  -- JSON类型，允许为空
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 创建仓库信息表（包含所有JSON数据中出现的字段）
 CREATE TABLE IF NOT EXISTS warehouses (
@@ -336,7 +336,7 @@ CREATE TABLE IF NOT EXISTS warehouses (
     t_warehouse_code VARCHAR(50),
     t_country_area_name VARCHAR(50),
     t_status VARCHAR(10)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 插入所有文件中data字段的仓库数据
 INSERT INTO warehouses (wid, type, sub_type, name, is_delete, country_code, wp_id, wp_name, t_warehouse_name, t_warehouse_code, t_country_area_name, t_status)
@@ -428,7 +428,7 @@ CREATE TABLE `inventory_details` (
   `stock_price` DECIMAL(12,4) NOT NULL DEFAULT 0.0000 COMMENT '单位库存成本',
   PRIMARY KEY (`id`),
   KEY `idx_sku_wid` (`sku`,`wid`) USING BTREE COMMENT 'SKU+仓库ID联合索引，提升业务查询效率'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='库存详情表-原生JSON格式存储，适配MySQL5.7.40，无语法错误';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='库存详情表-原生JSON格式存储，适配MySQL5.7.40，无语法错误';
 
 -- 删除AIGC模板表（如果存在）
 DROP TABLE IF EXISTS aigc_templates;
@@ -780,7 +780,7 @@ CREATE TABLE IF NOT EXISTS logistics (
     INDEX idx_logistics_provider_id (logistics_provider_id),
     INDEX idx_wid (wid),
     INDEX idx_is_used (is_used)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='物流渠道';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='物流渠道';
 
 -- 订单审核（订单号，local_sku,国家receiver_country_code，城市city，邮编postal_code，运德运费（试算数据），中邮运费（试算数据），仓库wid，物流方式id logistics_type_id，预估邮费，审单状态，审单时间，审单备注，创建时间。）
 CREATE TABLE IF NOT EXISTS `order_review` (

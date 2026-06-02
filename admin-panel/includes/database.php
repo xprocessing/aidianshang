@@ -8,7 +8,7 @@ class Database {
     private function __construct() {
         try {
             $this->conn = new PDO(
-                "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8",
+                "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4",
                 DB_USER,
                 DB_PASS,
                 [
@@ -17,6 +17,8 @@ class Database {
                     PDO::ATTR_EMULATE_PREPARES => false
                 ]
             );
+            // 统一排序规则，避免 utf8mb4_general_ci 与 utf8mb4_0900_ai_ci 冲突
+            $this->conn->exec("SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci");
         } catch(PDOException $e) {
             die("数据库连接失败: " . $e->getMessage());
         }

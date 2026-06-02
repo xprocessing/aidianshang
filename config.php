@@ -14,6 +14,7 @@
 // 1. 应用路径常量
 // ============================================
 define('APP_ROOT', __DIR__);
+define('APP_NAME', 'aidianshang');
 define('ADMIN_PANEL_DIR', APP_ROOT . '/admin-panel');
 define('VIEWS_DIR', ADMIN_PANEL_DIR . '/views');
 
