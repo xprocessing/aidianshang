@@ -23,6 +23,6 @@ yarn-error.log*
 .env
 .key
 key.*
-config.*
+config.php
 *.config
 .venv/
